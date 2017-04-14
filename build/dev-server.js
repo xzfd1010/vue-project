@@ -16,6 +16,40 @@ var port = process.env.PORT || config.dev.port
 var proxyTable = config.dev.proxyTable
 // 启动express
 var app = express()
+
+//编写接口
+var appData = require('../data.json');
+var seller = appData.seller;
+var goods = appData.goods;
+var ratings = appData.ratings;
+
+var apiRoutes = express.Router();
+
+apiRoutes.get('/seller',function(req,res){
+  res.json({
+    // 通过error number来标识返回状态正常
+    errno:0,
+    // 具体数据
+    data:seller
+  })
+})
+
+apiRoutes.get('/goods',function(req,res){
+  res.json({
+    errno:0,
+    data:goods
+  })
+})
+
+apiRoutes.get('/ratings',function(req,res){
+  res.json({
+    errno:0,
+    data:ratings
+  })
+})
+
+app.use('/api',apiRoutes);
+
 // 启动webpack，compiler是给中间件用的
 var compiler = webpack(webpackConfig)
 // 指定静态资源的访问目录
