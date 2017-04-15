@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <div class="tab border-1px-top border-1px-bottom">
       <div class="tab-item">
         <a v-link="{path:'/goods'}">商品</a>
@@ -17,10 +17,28 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import header from 'components/header/header.vue'
 
+  const ERR_OK = 0 // 用于判断返回状态，同时方便日后维护状态码
+
   export default{
+    data() {
+      return {
+        seller: {}
+      }
+    },
+//  钩子函数
+    created() {
+//      这里是去向api/seller这个路由获取的数据，获取的response是一个属性，其中的.json方法可以将其转换为json对象
+      this.$http.get('/api/seller').then((response) => {
+        response = response.body
+        if (response.errno === ERR_OK) {
+          this.seller = response.data
+          console.log(this.seller)
+        }
+      })
+    },
     components: {
       'v-header': header
     }
@@ -34,7 +52,6 @@
     width: 100%
     height: 40px
     line-height: 40px
-    // border-bottom: 1px solid rgba(7, 17, 27, 0.1)
     border-1px-bottom(rgba(7, 17, 27, 0.1))
     border-1px-top(rgba(7, 17, 27, 0.1))
     .tab-item
