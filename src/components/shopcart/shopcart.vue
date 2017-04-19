@@ -34,10 +34,7 @@
       selectFoods: {
         type: Array,
         default() {
-          return [{
-            price: 60,
-            count: 1
-          }]
+          return []
         }
       }
     },

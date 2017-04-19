@@ -30,19 +30,23 @@
                   <span class="now">¥{{food.price}}</span>
                   <span v-show="food.oldPrice" class="old">¥{{food.oldPrice}}</span>
                 </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="food"></cartcontrol>
+                </div>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
   import shopcart from 'components/shopcart/shopcart'
+  import cartcontrol from 'components/cartcontrol/cartcontrol'
 
   const ERR_OK = 0
 
@@ -71,6 +75,17 @@
           }
         }
         return 0
+      },
+      selectFoods() {
+        let foods = []
+        this.goods.forEach((good) => {
+          good.foods.forEach((food) => {
+            if (food.count) {
+              foods.push(food)
+            }
+          })
+        })
+        return foods
       }
     },
     created() {
@@ -82,7 +97,6 @@
           this.goods = response.data
           // 在下次更新DOM时执行initScroll和calculateHeight，也就是DOM已经存在的时候，应该有别的生命周期函数可以放
           this.$nextTick(() => {
-            console.log(1)
             this._initScroll()
             this._calculateHeight()
           })
@@ -96,6 +110,7 @@
         })
 
         this.foodsScroll = new BScroll(this.$els.foodsWrapper, {
+          click: true,
 //          希望scroll在滚动时，实时告知滚动的位置，应该是个参数吧
           probeType: 3
         })
@@ -128,7 +143,8 @@
       }
     },
     components: {
-      shopcart
+      shopcart,
+      cartcontrol
     }
   }
 </script>
@@ -237,5 +253,11 @@
               font-size: 10px
               color: rgb(147, 153, 159)
 
+          .cartcontrol-wrapper
+            position: absolute
+            right: 0
+            bottom: 12px
 
+  /*height: 24px*/
+  /*width: 48px*/
 </style>
