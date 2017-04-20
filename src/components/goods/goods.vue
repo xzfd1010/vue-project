@@ -39,7 +39,8 @@
         </li>
       </ul>
     </div>
-    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice"
+              :min-price="seller.minPrice" v-ref:shopcart></shopcart>
   </div>
 </template>
 
@@ -140,11 +141,25 @@
         let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook')
         let el = foodList[index]
         this.foodsScroll.scrollToElement(el, 300)
+      },
+      _drop(target) {
+//        调用shopcart的drop方法，这里利用了异步
+//        体验优化，异步执行下落动画
+        this.$nextTick(() => {
+          this.$refs.shopcart.drop(target)
+        })
       }
     },
     components: {
       shopcart,
       cartcontrol
+    },
+    events: {
+//      接收到子组件cart-control的事件，target是传入的参数，应该是组件orDOM？
+      'cart.add': function (target) {
+//        拿到事件后，需要调用this._drop方法   子组件shopcart的方法？
+        this._drop(target)
+      }
     }
   }
 </script>

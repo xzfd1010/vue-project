@@ -17,6 +17,11 @@
         </div>
       </div>
     </div>
+    <div class="ball-container">
+      <div transition="drop" class="ball" v-for="ball in balls" v-show="ball.show">
+        <div class="inner inner-hook"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,6 +41,28 @@
         default() {
           return []
         }
+      }
+    },
+    data() {
+      return {
+        balls: [
+          {
+            show: false
+          },
+          {
+            show: false
+          },
+          {
+            show: false
+          },
+          {
+            show: false
+          },
+          {
+            show: false
+          }
+        ],
+        dropBalls: []
       }
     },
     computed: {
@@ -69,6 +96,73 @@
           return 'not-enough'
         } else {
           return 'enough'
+        }
+      }
+    },
+    methods: {
+// 这里的element就是cart-control
+      drop(el) {
+        // 遍历的意义是为了找到一个隐藏的小球，第一句的赋值仅仅是为了初始化，随着不断的调用drop，所有的所有的ball都会被显示
+        for (let i = 0; i < this.balls.length; i++) {
+          // ball是一个对象，show是false
+          let ball = this.balls[i]
+          // 如果当前未显示，那么就显示，然后el就是那个小球
+          if (!ball.show) {
+            ball.show = true
+            ball.el = el
+            this.dropBalls.push(ball)
+            return
+          }
+        }
+      }
+    },
+    // 利用transition来实现动画，钩子函数
+    transitions: {
+      drop: {
+        beforeEnter(el) {
+          // 找到所有为true的小球
+          let count = this.balls.length
+          while (count--) {
+            let ball = this.balls[count]
+            if (ball.show) {
+              // 获取元素相对于视口的位置，left和top分别对应坐标
+              let rect = ball.el.getBoundingClientRect()
+              // x是当前位置相对最终位置的偏移量，向右为正
+              let x = rect.left - 32
+              // y向下为正，所以是负值
+              let y = -(window.innerHeight - rect.top - 22)
+              // 显示元素
+              el.style.display = ''
+              // 内层元素实现外层动画
+              el.style.webkitTransform = `translate3d(0,${y}px,0)`
+              el.style.transform = `translate3d(0,${y}px,0)`
+
+              let inner = el.getElementsByClassName('inner-hook')[0]
+              inner.style.webkitTransform = `translate3d(${x}px,0,0)`
+              inner.style.transform = `translate3d(${x}px,0,0)`
+            }
+          }
+        },
+        enter(el) {
+          // 手动触发浏览器重绘
+          /* eslint-disable no-unused-vars*/
+          let rf = el.offsetHeight
+          this.$nextTick(() => {
+            el.style.webkitTransform = 'translate3d(0,0,0)'
+            el.style.transform = 'translate3d(0,0,0)'
+
+            let inner = el.getElementsByClassName('inner-hook')[0]
+            inner.style.webkitTransform = 'translate3d(0,0,0)'
+            inner.style.transform = 'translate3d(0,0,0)'
+          })
+        },
+        afterEnter(el) {
+          // 取到dropball
+          let ball = this.dropBalls.shift()
+          if (ball) {
+            ball.show = false
+            el.style.display = 'none'
+          }
         }
       }
     }
@@ -165,5 +259,21 @@
           &.enough
             background: #00b43c;
             color: #fff
+
+    .ball-container
+      .ball
+        position: fixed
+        left: 32px
+        bottom: 22px;
+        z-index: 200
+        /*最终状态的位置*/
+        &.drop-transition
+          transition: all .4s cubic-bezier(.49,-.29,.75,.41)
+        .inner
+          width: 16px
+          height: 16px
+          border-radius: 50%
+          background: rgb(0, 160, 220);
+          transition: all .4s linear
 
 </style>
