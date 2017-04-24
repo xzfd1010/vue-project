@@ -16,7 +16,7 @@
         <li v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item border-1px-bottom">
+            <li v-for="food in item.foods" class="food-item border-1px-bottom" @click="selectFood(food,$event)" >
               <div class="icon">
                 <img width="57" height="57" :src="food.icon" alt="">
               </div>
@@ -42,12 +42,14 @@
     <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice"
               :min-price="seller.minPrice" v-ref:shopcart></shopcart>
   </div>
+  <food :food="selectedFood" v-ref:food></food>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
   import shopcart from 'components/shopcart/shopcart'
   import cartcontrol from 'components/cartcontrol/cartcontrol'
+  import food from 'components/food/food'
 
   const ERR_OK = 0
 
@@ -61,7 +63,8 @@
       return {
         goods: [],
         listHeight: [],
-        scrollY: 0
+        scrollY: 0,
+        selectedFood: {}
       }
     },
     computed: {
@@ -148,11 +151,19 @@
         this.$nextTick(() => {
           this.$refs.shopcart.drop(target)
         })
+      },
+      selectFood(food, event) {
+        if (!event._constructed) {
+          return
+        }
+        this.selectedFood = food
+        this.$refs.food.show()
       }
     },
     components: {
       shopcart,
-      cartcontrol
+      cartcontrol,
+      food
     },
     events: {
 //      接收到子组件cart-control的事件，target是传入的参数，应该是组件orDOM？
@@ -267,12 +278,9 @@
               text-decoration: line-through;
               font-size: 10px
               color: rgb(147, 153, 159)
-
           .cartcontrol-wrapper
             position: absolute
             right: 0
             bottom: 12px
 
-  /*height: 24px*/
-  /*width: 48px*/
 </style>
