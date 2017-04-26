@@ -38,4 +38,4 @@ router.map({
 router.start(app, '#app')
 
 // 设置默认启动
-router.go('/goods')
+// router.go('/goods')
