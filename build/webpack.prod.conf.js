@@ -4,6 +4,7 @@ var utils = require('./utils')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
+// webpack提供的插件，把编译过程中的css文件提取出来，生成单独的文件
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var env = process.env.NODE_ENV === 'testing'
@@ -12,15 +13,19 @@ var env = process.env.NODE_ENV === 'testing'
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
+    // 可以提取文件
     loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
   },
+  // 可以生成sourceMap
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
+    // 指定生成目录 name + hash.js
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   vue: {
+    // 把vue文件中的内容提取出来
     loaders: utils.cssLoaders({
       sourceMap: config.build.productionSourceMap,
       extract: true
@@ -48,6 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         : config.build.index,
       template: 'index.html',
       inject: true,
+      // 压缩html
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -59,6 +65,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency'
     }),
     // split vendor js into its own file
+    // 把三方库打包到vender.js
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
