@@ -1,5 +1,5 @@
 <template>
-  <div v-show="showFlag" class="food" transition="move" v-el:food>
+  <div v-show="showFlag" class="food" transition="move" ref="food">
     <div class="food-content">
       <div class="image-header">
         <!--图片加载存在异步的过程-->
@@ -32,7 +32,11 @@
       <div class="rating">
         <h1 class="title">商品评价</h1>
         <!--在这里传入给ratingselect的变量-->
-        <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc"
+        <ratingselect @select="selectRating"
+                      @toggle="toggleContent"
+                      :select-type="selectType"
+                      :only-content="onlyContent"
+                      :desc="desc"
                       :ratings="food.ratings"></ratingselect>
         <div class="rating-wrapper">
           <ul v-show="food.ratings && food.ratings.length">
@@ -59,7 +63,7 @@
   import BScroll from 'better-scroll'
   import Vue from 'vue'
   // 非花括号是export default引入，花括号不是default
-  import {formatDate} from 'common/js/date'
+  import { formatDate } from 'common/js/date'
   import cartcontrol from 'components/cartcontrol/cartcontrol'
   import split from 'components/split/split'
   import ratingselect from 'components/ratingselect/ratingselect'
@@ -94,7 +98,7 @@
         this.onlyContent = true
         this.$nextTick(() => {
           if (!this.scroll) {
-            this.scroll = new BScroll(this.$els.food, {
+            this.scroll = new BScroll(this.$refs.food, {
               click: true
             })
           } else {
@@ -112,7 +116,7 @@
 //        第一次可能不存在food.count
         Vue.set(this.food, 'count', 1)
 //        动画，解决动画的位置定为不准确，将消失时也做成动画，这样cartcontrol的位置能够被计算
-        this.$dispatch('cart.add', event.target)
+        this.$emit('add', event.target)
       },
       needShow(type, text) {
 //      判断是否显示内容
@@ -126,19 +130,19 @@
 //        否则根据选择类型来选择
           return type === this.selectType
         }
-      }
-    },
-    events: {
-//      监听事件
-      'ratingtype.select'(type) {
+      },
+      // 废除事件监听后添加的事件
+      addFood(target) {
+        this.$emit('add', target)
+      },
+      selectRating(type) {
         this.selectType = type
-//      需要更新页面，Vue的DOM更新是异步的
         this.$nextTick(() => {
           this.scroll.refresh()
         })
       },
-      'content.toggle'(onlyContent) {
-        this.onlyContent = onlyContent
+      toggleContent() {
+        this.onlyContent = !this.onlyContent
         this.$nextTick(() => {
           this.scroll.refresh()
         })

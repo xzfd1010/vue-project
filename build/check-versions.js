@@ -1,3 +1,4 @@
+// 检测当前的npm和node版本，通过package.json中的engines设置
 var chalk = require('chalk')
 var semver = require('semver')
 var packageConfig = require('../package.json')

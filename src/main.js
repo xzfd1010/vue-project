@@ -12,30 +12,32 @@ import 'common/stylus/index.styl'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
+const routes = [{
+  path: '/',
+  component: goods
+}, {
+  path: '/goods',
+  component: goods
+}, {
+  path: '/ratings',
+  component: ratings
+}, {
+  path: '/seller',
+  component: seller
+}]
+
+// 初始化router对象
+const router = new VueRouter({
+  linkActiveClass: 'active',
+  // routes对象是一个数组，path路径 + 组件
+  routes
+})
+
 // 下面这行用于跳过eslint的规则
 /* eslint-disable no-new */
-
-// 路由器的根组件
-let app = Vue.extend(App)
-
-let router = new VueRouter({
-  linkActiveClass: 'active'
+new Vue({
+  el: '#app',
+  router,
+  // render函数，vue2.0的特性，可以通过javascript函数初始化模板，不必传入template
+  render: h => h(App)
 })
-
-// 配置路由
-router.map({
-  '/goods': {
-    component: goods
-  },
-  '/ratings': {
-    component: ratings
-  },
-  '/seller': {
-    component: seller
-  }
-})
-
-router.start(app, '#app')
-
-// 设置默认启动
-// router.go('/goods')

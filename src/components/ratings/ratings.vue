@@ -1,5 +1,5 @@
 <template>
-  <div class="ratings" v-el:ratings>
+  <div class="ratings" ref="ratings">
     <div class="ratings-content">
       <div class="overview">
         <div class="overview-left">
@@ -24,12 +24,13 @@
           </div>
         </div>
       </div>
-      <div class="split"></div>
-      <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc"
+      <split></split>
+      <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType" :onlyContent="onlyContent"
                     :ratings="ratings"></ratingselect>
       <div class="rating-wrapper">
         <ul>
-          <li v-show="needShow(rating.rateType,rating.text)" v-for="rating in ratings" class="rating-item bottom-1px-bottom">
+          <li v-show="needShow(rating.rateType,rating.text)" v-for="rating in ratings"
+              class="rating-item bottom-1px-bottom">
             <div class="avatar">
               <img width="28" height="28" :src="rating.avatar" alt="">
             </div>
@@ -74,7 +75,7 @@
       return {
         ratings: [],
         selectType: ALL,
-        onlyContent: false
+        onlyContent: true
       }
     },
     methods: {
@@ -90,6 +91,19 @@
 //        否则根据选择类型来选择
           return type === this.selectType
         }
+      },
+      selectRating(type) {
+        this.selectType = type
+//      需要更新页面，Vue的DOM更新是异步的
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      },
+      toggleContent() {
+        this.onlyContent = !this.onlyContent
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
       }
     },
     created() {
@@ -98,7 +112,7 @@
         if (response.errno === ERR_OK) {
           this.ratings = response.data
           this.$nextTick(() => {
-            this.scroll = new BScroll(this.$els.ratings, {
+            this.scroll = new BScroll(this.$refs.ratings, {
               click: true
             })
           })
@@ -109,22 +123,6 @@
       formatDate(time) {
         let date = new Date(time)
         return formatDate(date, 'yyyy-MM-dd hh:mm')
-      }
-    },
-    events: {
-//      监听事件
-      'ratingtype.select'(type) {
-        this.selectType = type
-//      需要更新页面，Vue的DOM更新是异步的
-        this.$nextTick(() => {
-          this.scroll.refresh()
-        })
-      },
-      'content.toggle'(onlyContent) {
-        this.onlyContent = onlyContent
-        this.$nextTick(() => {
-          this.scroll.refresh()
-        })
       }
     },
     components: {
@@ -223,7 +221,7 @@
             margin-bottom: 4px
             line-height: 12px;
             font-size: 10px;
-            color:rgb(7,17,27)
+            color: rgb(7, 17, 27)
           .star-wrapper
             font-size: 0;
             margin-bottom: 6px;
@@ -235,33 +233,33 @@
               display: inline-block
               vertical-align: top
               font-size: 10px;
-              color:rgb(147,153,159)
+              color: rgb(147, 153, 159)
           .text
             margin-bottom: 8px;
             line-height: 18px
-            color:rgb(7,17,27)
+            color: rgb(7, 17, 27)
             font-size: 12px;
 
           .recommend
             line-height: 16px
-            font-size:0;
-            .icon-thumb_up,.item
+            font-size: 0;
+            .icon-thumb_up, .item
               display: inline-block
               margin: 0 8px 4px 0
               font-size: 9px;
             .icon-thumb_up
-              color:rgb(0,160,220)
+              color: rgb(0, 160, 220)
             .item
               padding: 0 6px;
-              border:1px solid rgba(7,17,27,.1)
+              border: 1px solid rgba(7, 17, 27, .1)
               border-radius: 1px;
-              color:rgb(147,153,159)
+              color: rgb(147, 153, 159)
               background: #ffffff;
           .time
             position: absolute
-            top:0
-            right:0
+            top: 0
+            right: 0
             line-height: 12px;
             font-size: 10px;
-            color:rgb(147,153,159)
+            color: rgb(147, 153, 159)
 </style>

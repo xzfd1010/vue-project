@@ -19,6 +19,7 @@
   const POSITIVE = 0
   const NEGATIVE = 1
   const ALL = 2
+
   export default {
 //    内容都是从父组件获取的
     props: {
@@ -48,23 +49,6 @@
       }
 
     },
-    methods: {
-      select(type, event) {
-        if (!event._constructed) {
-          return
-        }
-        this.selectType = type
-//      通知父组件
-        this.$dispatch('ratingtype.select', type)
-      },
-      toggleContent(event) {
-        if (!event._constructed) {
-          return
-        }
-        this.onlyContent = !this.onlyContent
-        this.$dispatch('content.toggle', this.onlyContent)
-      }
-    },
     computed: {
       positives() {
         // 所有正向评价
@@ -77,6 +61,19 @@
         return this.ratings.filter((rating) => {
           return rating.rateType === NEGATIVE
         })
+      }
+    },
+    methods: {
+      select(type, event) {
+        if (!event._constructed) {
+          return
+        }
+        this.$emit('select', type)
+      },
+      toggleContent(event) {
+        if (!event._constructed) {
+          return
+        }
       }
     }
   }

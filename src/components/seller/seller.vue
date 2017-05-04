@@ -1,5 +1,5 @@
 <template>
-  <div class="seller" v-el:seller>
+  <div class="seller" ref="seller">
     <div class="seller-content">
       <div class="overview">
         <h1 class="title">{{seller.name}}</h1>
@@ -28,7 +28,7 @@
             </div>
           </li>
         </ul>
-        <div class="favorite" @click="toggleFavorite($event)">
+        <div class="favorite" @click="toggleFavorite">
           <span class="icon-favorite" :class="{'active':favorite}"></span>
           <span class="text">{{favoriteText}}</span>
         </div>
@@ -40,19 +40,19 @@
           <p class="content">{{seller.bulletin}}</p>
         </div>
         <ul v-if="seller.supports" class="supports">
-          <li class="support-item border-1px-bottom" v-for="item in seller.supports">
-            <span class="icon" :class="classMap[seller.supports[$index].type]"></span>
-            <span class="text">{{seller.supports[$index].description}}</span>
+          <li class="support-item border-1px" v-for="(item,index) in seller.supports">
+            <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+            <span class="text">{{seller.supports[index].description}}</span>
           </li>
         </ul>
       </div>
       <split></split>
       <div class="pics">
         <h1 class="title">商家实景</h1>
-        <div class="pic-wrapper" v-el:pic-wrapper>
-          <ul class="pic-list" v-el:pic-list>
+        <div class="pic-wrapper" ref="picWrapper">
+          <ul class="pic-list" ref="picList">
             <li class="pic-item" v-for="pic in seller.pics">
-              <img :src="pic" width="120" height="90" alt="">
+              <img :src="pic" width="120" height="90">
             </li>
           </ul>
         </div>
@@ -92,10 +92,6 @@
         return this.favorite ? '已收藏' : '收藏'
       }
     },
-    components: {
-      star,
-      split
-    },
     created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     },
@@ -109,7 +105,7 @@
       },
       _initScroll() {
         if (!this.scroll) {
-          this.scroll = new BScroll(this.$els.seller, {
+          this.scroll = new BScroll(this.$refs.seller, {
             click: true
           })
         } else {
@@ -121,10 +117,10 @@
           let picWidth = 120
           let margin = 6
           let width = (picWidth + margin) * this.seller.pics.length
-          this.$els.picList.style.width = width + 'px'
+          this.$refs.picList.style.width = width + 'px'
           this.$nextTick(() => {
             if (!this.picScroll) {
-              this.picScroll = new BScroll(this.$els.picWrapper, {
+              this.picScroll = new BScroll(this.$refs.picWrapper, {
                 scrollX: true,
                 // 忽略垂直方向的滚动
                 eventPassthrough: 'vertical'
@@ -143,9 +139,15 @@
         this._initPics()
       }
     },
-    ready() {
-      this._initScroll()
-      this._initPics()
+    mounted() {
+      this.$nextTick(() => {
+        this._initScroll()
+        this._initPics()
+      })
+    },
+    components: {
+      star,
+      split
     }
   }
 </script>
