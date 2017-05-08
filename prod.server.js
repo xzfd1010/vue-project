@@ -1,9 +1,7 @@
-/**
- * Created by nick on 2017/4/28.
- */
 var express = require('express')
 var config = require('./config/index')
 
+// 当前环境变量下的port || config.build下的port
 var port = process.env.PORT || config.build.port
 
 var app = express()

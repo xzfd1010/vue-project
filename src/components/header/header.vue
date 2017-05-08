@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <!--头像-->
       <div class="avatar">
-        <img :src="seller.avatar" width="64" height="64">
+        <img width="64" height="64" :src="seller.avatar">
       </div>
       <div class="content">
         <div class="title">
@@ -31,7 +31,7 @@
       <i class="icon-keyboard_arrow_right"></i>
     </div>
     <div class="background">
-      <img :src="seller.avatar" alt="" width="100%" height="100%">
+      <img :src="seller.avatar" width="100%" height="100%">
     </div>
     <transition name="fade">
       <div v-show="detailShow" class="detail">
@@ -226,9 +226,9 @@
       width: 100%
       height: 100%
       overflow: auto
-      transition: all 0.5s
       backdrop-filter:blur(10px)
       opacity:1
+      background: rgba(7, 17, 27, 0.8)
       &.fade-enter-active,&.fade-leave-active
         transition:all .5s;
       &.fade-enter,&.fade-leave-active
