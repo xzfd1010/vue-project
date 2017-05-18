@@ -2,6 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2051f91-ff28-41a7-bd1e-49940a5b5a79" name="Default" comment="打包发布的配置项">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/app.374a893791825f22d184a9a3f4831e9e.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/app.374a893791825f22d184a9a3f4831e9e.css.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/reset.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/data.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/app.da7fd7825ec3b6b57dc7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/app.da7fd7825ec3b6b57dc7.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/manifest.2d1e73c2fd8aa46e2db6.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/manifest.2d1e73c2fd8aa46e2db6.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/vendor.bdc142c5e422af628246.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/vendor.bdc142c5e422af628246.js.map" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,7 +33,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/.gitignore">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -31,7 +43,7 @@
         </entry>
       </file>
       <file leaf-file-name="data.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/static/data.json">
+        <entry file="file://$PROJECT_DIR$/static/data.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -41,7 +53,7 @@
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/index.html">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -51,7 +63,7 @@
         </entry>
       </file>
       <file leaf-file-name="app.374a893791825f22d184a9a3f4831e9e.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/static/css/app.374a893791825f22d184a9a3f4831e9e.css">
+        <entry file="file://$PROJECT_DIR$/static/css/app.374a893791825f22d184a9a3f4831e9e.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -119,7 +131,7 @@
         </entry>
       </file>
       <file leaf-file-name="app.da7fd7825ec3b6b57dc7.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/static/js/app.da7fd7825ec3b6b57dc7.js">
+        <entry file="file://$PROJECT_DIR$/static/js/app.da7fd7825ec3b6b57dc7.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -336,10 +348,6 @@
               <option name="myItemId" value="vue-sell" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VueDemo_Sell_Eleme" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -348,10 +356,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vue-sell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="VueDemo_Sell_Eleme" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -378,15 +382,16 @@
     <property name="two.files.diff.last.used.file" value="$USER_HOME$/Downloads/vue-sell-2.0/src/components/cartcontrol/cartcontrol.vue" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/components/ratings" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/testimage" />
       <recent name="$PROJECT_DIR$/dist/static" />
       <recent name="$PROJECT_DIR$/dist" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/build" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/ratings" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -530,7 +535,7 @@
       <workItem from="1494249605440" duration="17000" />
       <workItem from="1494252937447" duration="186000" />
       <workItem from="1494990922177" duration="649000" />
-      <workItem from="1495091221554" duration="2419000" />
+      <workItem from="1495091221554" duration="2499000" />
     </task>
     <task id="LOCAL-00001" summary="项目准备：制作字体图标，数据和路由">
       <created>1492159461659</created>
@@ -648,18 +653,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136258000" />
+    <option name="totallyTimeSpent" value="136338000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="23" width="1920" height="1057" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20010532" sideWeight="0.49635795" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20010532" sideWeight="0.49635795" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30051813" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16891192" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16891192" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960506" sideWeight="0.503642" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1042,7 +1047,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/index.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1050,7 +1055,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/static/css/app.374a893791825f22d184a9a3f4831e9e.css">
+    <entry file="file://$PROJECT_DIR$/static/css/app.374a893791825f22d184a9a3f4831e9e.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1116,7 +1121,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/static/js/app.da7fd7825ec3b6b57dc7.js">
+    <entry file="file://$PROJECT_DIR$/static/js/app.da7fd7825ec3b6b57dc7.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1124,7 +1129,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/.gitignore">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1132,7 +1137,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VueDemo_Sell_Eleme/static/data.json">
+    <entry file="file://$PROJECT_DIR$/static/data.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
