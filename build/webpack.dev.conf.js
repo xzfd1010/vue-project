@@ -1,6 +1,6 @@
 var config = require('../config')
 var webpack = require('webpack')
-// 用于合并文件
+// 用于合并配置文件
 var merge = require('webpack-merge')
 // 工具方法
 var utils = require('./utils')

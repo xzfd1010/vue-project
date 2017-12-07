@@ -1,5 +1,5 @@
 var path = require('path')
-var config = require('../config')
+var config = require('../config')  // 引入的是config中的index.js
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 exports.assetsPath = function (_path) {

@@ -2,6 +2,7 @@ var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var config = require('../config')
+// HTTP 代理的中间件
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
@@ -52,6 +53,7 @@ app.use('/api',apiRoutes);
 
 // 启动webpack，compiler是给中间件用的
 var compiler = webpack(webpackConfig)
+
 // 指定静态资源的访问目录
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   // 静态资源的访问目录
@@ -62,6 +64,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
     chunks: false
   }
 })
+
 // express和webpack的hotReload的插件
 var hotMiddleware = require('webpack-hot-middleware')(compiler)
 // force page reload when html-webpack-plugin template changes
@@ -71,6 +74,7 @@ compiler.plugin('compilation', function (compilation) {
     cb()
   })
 })
+
 // 代理转发的中间件
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
@@ -95,7 +99,9 @@ app.use(hotMiddleware)
 // serve pure static assets
 // 配置访问路径
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+
 app.use(staticPath, express.static('./static'))
+
 // 启动express访问端口
 module.exports = app.listen(port, function (err) {
   if (err) {

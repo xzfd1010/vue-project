@@ -2,7 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 // 定义当前项目的根目录
-var projectRoot = path.resolve(__dirname, '../')
+var projectRoot = path.resolve(__dirname, '../'); // 回到vue-sell根目录
 // webpack的基本配置
 module.exports = {
   // 入口配置，表示webpack的入口配置文件
@@ -15,7 +15,7 @@ module.exports = {
     path: config.build.assetsRoot,
     // 请求的静态资源的绝对路径
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    // name用到的就死活entry的key
+    // name用到的就使用entry的key
     filename: '[name].js'
   },
   // 模块的相关配置
@@ -89,7 +89,7 @@ module.exports = {
         loader: 'url',
         query: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]') // 控制hash字符串7位
         }
       }
     ]
@@ -102,4 +102,4 @@ module.exports = {
   vue: {
     loaders: utils.cssLoaders()
   }
-}
+};
