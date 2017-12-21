@@ -29,6 +29,7 @@
         <p class="text">{{food.info}}</p>
       </div>
       <split></split>
+      <split></split>
       <div class="rating">
         <h1 class="title">商品评价</h1>
         <!--在这里传入给ratingselect的变量-->

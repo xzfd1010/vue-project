@@ -211,7 +211,7 @@
         },
         enter(el) {
           // 手动触发浏览器重绘 reflow
-          /* eslint-disable no-unused-vars*/
+          /* eslint-disable no-unused-vars */
           let rf = el.offsetHeight
           this.$nextTick(() => {
             el.style.webkitTransform = 'translate3d(0,0,0)'
@@ -227,7 +227,7 @@
           let ball = this.dropBalls.shift()
           if (ball) {
             ball.show = false
-            /* eslint-disable no-unused-vars*/
+            /* eslint-disable no-unused-vars */
             let rf = el.offsetHeight
             el.style.display = 'none'
           }

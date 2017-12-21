@@ -18,13 +18,14 @@ var proxyTable = config.dev.proxyTable
 // 启动express
 var app = express()
 
-//编写接口
+// 编写接口
 var appData = require('../data.json');
 var seller = appData.seller;
 var goods = appData.goods;
 var ratings = appData.ratings;
 
 var apiRoutes = express.Router();
+
 
 apiRoutes.get('/seller',function(req,res){
   res.json({

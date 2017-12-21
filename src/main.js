@@ -35,6 +35,10 @@ router.map({
   }
 })
 
+router.redirect({
+  '*': '/goods'
+})
+
 router.start(app, '#app')
 
 // 设置默认启动
